@@ -40,8 +40,8 @@ Click the button — the count updates live without leaving markdown:
 ## Next steps
 
 1. Update `CLAUDE.md` to describe your project's layers and architecture rules
-{{#VAULT}}2. Start the vault: open `{{VAULT_NAME}}/` in Obsidian and write your first ADR
-{{/VAULT}}3. Add your source code under `src/`
-4. Add unit tests under `tests/`
-5. Write more `.demo.vue` pages for your docs site
+2. Add your source code under `src/`
+3. Add unit tests under `tests/`
+4. Write more `.demo.vue` pages for your docs site{{#VAULT}}
+5. Start the vault: open `{{VAULT_NAME}}/` in Obsidian and write your first ADR{{/VAULT}}
 </template>

@@ -52,9 +52,25 @@ function isValidPackageName(name) {
 }
 
 function interpolate(content, vars, flags) {
-  content = content.replace(/\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (_, flag, inner) =>
-    flags[flag] ? inner : ''
-  );
+  // Loop until stable: nested blocks (e.g. {{#WIREIT}} inside {{#ESLINT}}) require
+  // multiple passes because the regex engine doesn't re-scan replacement text.
+  let prev;
+  do {
+    prev = content;
+    content = content.replace(/\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (_, flag, inner) =>
+      flags[flag] ? inner : ''
+    );
+  } while (content !== prev);
+
+  // Strip trailing whitespace per line (orphan indent left by removed blocks) and
+  // collapse runs of 3+ newlines to 2 (one blank line). Ensure exactly one final newline.
+  content = content
+    .split('\n')
+    .map((l) => l.trimEnd())
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/\n*$/, '\n');
+
   return content
     .replaceAll('{{PROJECT_NAME}}', vars.projectName)
     .replaceAll('{{VAULT_NAME}}', vars.vaultName ?? '');

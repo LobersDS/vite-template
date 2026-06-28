@@ -15,7 +15,8 @@
     "lint": "wireit",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "wireit"
+    "format:check": "wireit",
+    "clean": "rm -rf .wireit"
   },
   "wireit": {
     "test": {
