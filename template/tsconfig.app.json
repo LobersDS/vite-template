@@ -1,0 +1,15 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vite/client"],
+
+    /* Linting */
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+    // noUnusedLocals/Parameters are intentionally omitted here.
+    // vue-tsc cannot analyze <template lang="md"> blocks (our plugin's job),
+    // so reactive vars used only in md templates would always be false-positives.
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+}

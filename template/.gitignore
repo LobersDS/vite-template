@@ -1,0 +1,44 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-site
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Obsidian — workspace state (open files, cursor positions)
+StaticSite-Vault/.obsidian/workspace.json
+
+# Obsidian plugin binaries — contributors install these via the plugin browser.
+StaticSite-Vault/.obsidian/plugins/*/main.js
+StaticSite-Vault/.obsidian/plugins/*/styles.css
+
+# Obsidian / Claude plugin data that may contain API keys or personal info
+StaticSite-Vault/.claudian/
+StaticSite-Vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
+StaticSite-Vault/.obsidian/plugins/realclaudian/data.json
+
+# Wireit build cache
+.wireit/
+
+# Test artifacts
+test-results/
+smoke-test/test-results/

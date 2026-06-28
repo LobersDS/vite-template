@@ -1,0 +1,151 @@
+{
+  "name": "{{PROJECT_NAME}}",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "smoke-test"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "wireit",
+    "build:site": "wireit",
+    "preview": "vite preview",
+    "test": "wireit",
+    "test:watch": "vitest",
+    "test:bundle": "wireit",
+    "bench": "wireit",
+    "test:e2e": "npm run test:e2e --workspace=smoke-test",
+    "coverage": "vitest run --coverage",
+    "lint": "wireit",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "wireit",
+    "clean": "rm -rf dist dist-site smoke-test/dist .wireit coverage",
+    "smoke-test:dev": "npm run dev --workspace=smoke-test",
+    "smoke-test:build": "wireit",
+    "smoke-test:e2e": "npm run test:e2e --workspace=smoke-test"
+  },
+  "wireit": {
+    "build": {
+      "command": "vue-tsc -b && vite build",
+      "files": [
+        "src/**",
+        "tsconfig*.json",
+        "vite.config.ts",
+        "package.json"
+      ],
+      "output": [
+        "dist/**"
+      ]
+    },
+    "build:site": {
+      "command": "vite build --config vite.site.config.ts",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "src/docs/**",
+        "vite.site.config.ts"
+      ],
+      "output": [
+        "dist-site/**"
+      ]
+    },
+    "test": {
+      "command": "vitest run",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "tests/**",
+        "vitest.config.ts"
+      ],
+      "output": []
+    },
+    "test:bundle": {
+      "command": "vitest run tests/unit/bundle-size.test.ts",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "tests/unit/bundle-size.test.ts"
+      ],
+      "output": []
+    },
+    "lint": {
+      "command": "eslint .",
+      "files": [
+        "src/**",
+        "tests/**",
+        "*.config.*",
+        "smoke-test/src/**",
+        "eslint.config.js"
+      ],
+      "output": []
+    },
+    "format:check": {
+      "command": "prettier --check .",
+      "files": [
+        "src/**",
+        "tests/**",
+        "*.config.*",
+        ".prettierrc*",
+        "*.json",
+        "*.md"
+      ],
+      "output": []
+    },
+    "smoke-test:build": {
+      "command": "npm run build --workspace=smoke-test",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "smoke-test/src/**",
+        "smoke-test/vite.config.ts",
+        "smoke-test/tsconfig*.json"
+      ],
+      "output": [
+        "smoke-test/dist/**"
+      ]
+    },
+    "bench": {
+      "command": "vitest bench",
+      "files": [
+        "tests/perf/**",
+        "vitest.config.ts"
+      ],
+      "output": []
+    }
+  },
+  "dependencies": {
+    "vite-plugin-vue-template-lang-markdown": "github:LobersDS/vite-plugin-vue-template-lang-markdown",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@playwright/test": "^1.61.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.0",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.1",
+    "@types/node": "^24.0.0",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vitest/coverage-v8": "^4.0.0",
+    "@vue/tsconfig": "^0.9.0",
+    "eslint": "^10.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "prettier": "^3.0.0",
+    "semantic-release": "^25.0.0",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^8.0.0",
+    "vitest": "^4.0.0",
+    "vue-tsc": "^3.0.0",
+    "wireit": "^0.14.0"
+  }
+}

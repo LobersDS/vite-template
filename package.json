@@ -1,0 +1,30 @@
+{
+  "name": "@loberds/create-vite",
+  "version": "1.0.0",
+  "description": "LobersDS project scaffolder — npm create @loberds/vite",
+  "type": "module",
+  "bin": {
+    "create-vite": "./bin/create.mjs"
+  },
+  "files": [
+    "bin",
+    "template"
+  ],
+  "scripts": {
+    "test": "node bin/create.mjs --self-test"
+  },
+  "keywords": [
+    "loberds",
+    "vite",
+    "vue",
+    "scaffolder",
+    "create"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
