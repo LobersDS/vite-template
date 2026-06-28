@@ -120,7 +120,7 @@
     }
   },
   "dependencies": {
-    "vite-plugin-vue-template-lang-markdown": "https://github.com/LobersDS/vite-plugin-vue-template-lang-markdown/archive/refs/heads/main.tar.gz",
+    "@lober-ds/vite-plugin-vue-template-lang-markdown": "^1.0.0",
     "vue": "^3.5.0"
   },
   "devDependencies": {

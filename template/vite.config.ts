@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { vueTemplateLangMarkdown } from 'vite-plugin-vue-template-lang-markdown';
+import { vueTemplateLangMarkdown } from '@lober-ds/vite-plugin-vue-template-lang-markdown';
 
 export default defineConfig({
   plugins: [
