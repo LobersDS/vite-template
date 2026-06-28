@@ -22,7 +22,13 @@ Welcome to your new LobersDS project. This page is written in markdown with live
 
 Click the button — the count updates live without leaving markdown:
 
+<div>
 <button @click="count++">Count: {{ count }}</button>
+</div>
+
+## Components
+
+See `src/docs/Button.demo.vue` for the `Button` component documentation.
 
 ## What's included
 

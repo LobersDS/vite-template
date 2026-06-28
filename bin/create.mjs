@@ -21,14 +21,21 @@ if (process.argv[2] === '--self-test') {
   const required = [
     'base/CLAUDE.md',
     'base/src/main.ts',
+    'base/src/demo-vue.d.ts',
+    'base/src/lib/Button.vue',
+    'base/src/lib/index.ts',
+    'base/src/docs/Button.demo.vue',
+    'base/tsconfig.app.json',
     'base/vite.config.ts',
     'base/.claude/skills/check-arch/SKILL.md',
     'eslint/eslint.config.js',
     'prettier/prettier.config.js',
     'mise/mise.toml',
     'vitest/vitest.config.ts',
+    'vitest/tests/unit/Button.test.ts',
     'ci/.github/workflows/ci.yml',
     'release/.releaserc.json',
+    'smoke-test/smoke-test/src/App.vue',
     'vault/StaticSite-Vault/.obsidian/core-plugins.json',
     'vault-skill/.claude/skills/vault-sync/SKILL.md',
   ];
@@ -121,6 +128,8 @@ const DEPS = {
   vitest: {
     vitest: '^4.0.0',
     '@vitest/coverage-v8': '^4.0.0',
+    '@vue/test-utils': '^2.0.0',
+    'happy-dom': '^16.0.0',
   },
   smoketest: {
     '@playwright/test': '^1.61.0',
@@ -241,6 +250,7 @@ function mergePackageJson(basePkg, projectName, f) {
     private: basePkg.private,
     version: basePkg.version,
     type: basePkg.type,
+    ...(f.library ? { exports: { '.': './src/lib/index.ts' } } : {}),
     ...(f.smoketest ? { workspaces: ['smoke-test'] } : {}),
     scripts: buildScripts(f),
     dependencies: basePkg.dependencies,
@@ -314,12 +324,13 @@ async function main() {
     }
 
     console.log('');
+    const library = yn(await prompt('Library project (vs app)?      [y/N] ', lineQueue, rl), false);
+    const smoketest = library;
     const eslint = yn(await prompt('Include ESLint?                 [Y/n] ', lineQueue, rl));
     const prettier = yn(await prompt('Include Prettier?               [Y/n] ', lineQueue, rl));
     const mise = yn(await prompt('Include mise (Node pinning)?    [Y/n] ', lineQueue, rl));
     const wireit = yn(await prompt('Include wireit (task graph)?    [Y/n] ', lineQueue, rl));
     const vitest = yn(await prompt('Include Vitest (unit tests)?    [Y/n] ', lineQueue, rl));
-    const smoketest = yn(await prompt('Include Playwright smoke tests? [Y/n] ', lineQueue, rl));
     const ci = yn(await prompt('Include GitHub CI workflows?    [Y/n] ', lineQueue, rl));
     const release = yn(
       await prompt('Include semantic-release?       [y/N] ', lineQueue, rl),
@@ -334,7 +345,18 @@ async function main() {
       vaultName = ans || defaultVaultName;
     }
 
-    const features = { eslint, prettier, mise, wireit, vitest, smoketest, ci, release, vault };
+    const features = {
+      eslint,
+      prettier,
+      mise,
+      wireit,
+      vitest,
+      smoketest,
+      ci,
+      release,
+      vault,
+      library,
+    };
     const flags = {
       ESLINT: eslint,
       PRETTIER: prettier,
@@ -345,13 +367,14 @@ async function main() {
       CI: ci,
       RELEASE: release,
       VAULT: vault,
+      LIBRARY: library,
     };
     const vars = { projectName, vaultName };
 
     console.log(`\nScaffolding ${projectName} with Vite (vue-ts)…\n`);
     const result = spawnSync(
       'npx',
-      ['--yes', 'create-vite@latest', projectName, '--template', 'vue-ts'],
+      ['--yes', 'create-vite@latest', projectName, '--template', 'vue-ts', '--no-immediate'],
       { stdio: 'inherit' }
     );
     if (result.status !== 0) process.exit(result.status ?? 1);
