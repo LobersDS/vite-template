@@ -1,31 +1,23 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('smoke test — markdown rendering', () => {
-  test('renders h1 heading from markdown', async ({ page }) => {
+test.describe('smoke test — Button component', () => {
+  test('renders primary button', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('h1')).toHaveText('Smoke Test');
+    await expect(page.getByRole('button', { name: 'Primary button' })).toBeVisible();
   });
 
-  test('renders bold text', async ({ page }) => {
+  test('renders secondary button', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('strong')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Secondary button' })).toBeVisible();
   });
 
-  test('renders list items', async ({ page }) => {
+  test('renders ghost button', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('li').first()).toBeVisible();
-  });
-});
-
-test.describe('smoke test — Vue reactivity', () => {
-  test('renders counter button', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByRole('button', { name: 'Count: 0' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Ghost button' })).toBeVisible();
   });
 
-  test('counter increments on click', async ({ page }) => {
+  test('disabled button is disabled', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('button', { name: 'Count: 0' }).click();
-    await expect(page.getByRole('button', { name: 'Count: 1' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Disabled button' })).toBeDisabled();
   });
 });
