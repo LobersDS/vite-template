@@ -5,13 +5,13 @@ LobersDS project scaffolder. Bootstraps a new repo with the full LobersDS build 
 ## Usage
 
 ```sh
-npm create @loberds/vite my-new-repo
+npm create @lober-ds/vite my-new-repo
 ```
 
 or without a project name (interactive prompt):
 
 ```sh
-npm create @loberds/vite
+npm create @lober-ds/vite
 ```
 
 ### What gets generated

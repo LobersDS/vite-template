@@ -1,7 +1,7 @@
 {
-  "name": "@loberds/create-vite",
+  "name": "@lober-ds/create-vite",
   "version": "1.0.0",
-  "description": "LobersDS project scaffolder — npm create @loberds/vite",
+  "description": "LobersDS project scaffolder — npm create @lober-ds/vite",
   "type": "module",
   "bin": {
     "create-vite": "./bin/create.mjs"
@@ -14,7 +14,7 @@
     "test": "node bin/create.mjs --self-test"
   },
   "keywords": [
-    "loberds",
+    "lober-ds",
     "vite",
     "vue",
     "scaffolder",
