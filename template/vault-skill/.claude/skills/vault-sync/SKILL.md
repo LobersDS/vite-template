@@ -1,12 +1,12 @@
 ---
 name: vault-sync
-description: Sync StaticSite-Vault architecture decisions into CLAUDE.md. Use when vault docs have been updated with new design decisions and CLAUDE.md should reflect them. Prompt-driven — lists available docs, previews changes, confirms before writing. Never auto-applies.
+description: Sync {{VAULT_NAME}} architecture decisions into CLAUDE.md. Use when vault docs have been updated with new design decisions and CLAUDE.md should reflect them. Prompt-driven — lists available docs, previews changes, confirms before writing. Never auto-applies.
 tools: Read, Write, Edit, Bash, Glob
 ---
 
 # Vault Sync
 
-Keep CLAUDE.md in sync with `StaticSite-Vault/Static Site Generator/` as architecture decisions evolve.
+Keep CLAUDE.md in sync with `{{VAULT_NAME}}/Static Site Generator/` as architecture decisions evolve.
 
 CLAUDE.md links to vault docs rather than duplicating them. This skill updates those links and the short summaries alongside them when vault content changes. The vault is always the source of truth — this skill pulls from it, never pushes to it.
 
@@ -15,7 +15,7 @@ CLAUDE.md links to vault docs rather than duplicating them. This skill updates t
 ### Step 1: List available vault documents
 
 ```bash
-ls "StaticSite-Vault/Static Site Generator/"
+ls "{{VAULT_NAME}}/Static Site Generator/"
 ```
 
 Present the list to the user. Ask which documents to pull from. Let them select all or a subset.

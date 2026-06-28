@@ -4,15 +4,17 @@
 
 **Multi-repo:** update this if {{PROJECT_NAME}} is part of a multi-repo setup (e.g., this repo = build tooling; a sibling repo = UI components).
 
+{{#VAULT}}
 ## Reading the Vault First
 
-`StaticSite-Vault/Static Site Generator/` is an Obsidian vault and the authoritative source of truth for all design decisions. This file links to it rather than duplicating it.
+`{{VAULT_NAME}}/Static Site Generator/` is an Obsidian vault and the authoritative source of truth for all design decisions. This file links to it rather than duplicating it.
 
 Before starting any feature, read:
 
 1. `Architecture Overview.md` — start here every time; layer model, build order
 2. The doc for the specific layer you're working on
 3. `Alternatives Considered.md` — before proposing a design change (likely already considered)
+{{/VAULT}}
 
 ## Commands
 
@@ -20,15 +22,17 @@ Read `CONTRIBUTING.md` before running any commands — it lists every `npm run` 
 
 Never run test runners or other tools directly (e.g. `npx vitest`, `npx playwright`). Always use the `npm run` scripts defined in `package.json`.
 
-**Before every commit:** run `npm run lint:fix && npm run format` and stage any resulting changes. CI lint and format:check jobs fail consistently when this is skipped.
+{{#ESLINT}}
+**Before every commit:** run `npm run lint:fix{{#PRETTIER}} && npm run format{{/PRETTIER}}` and stage any resulting changes. CI lint and format:check jobs fail consistently when this is skipped.
+{{/ESLINT}}
 
 ## Architecture
 
 <!-- Define your project's layers here. Each layer should be independently usable. -->
 
-| # | Layer | Type | Vault Doc |
-|---|-------|------|-----------|
-| 1 | _your first layer_ | _e.g., Vite Plugin_ | _Layer Name.md_ |
+| # | Layer | Type | {{#VAULT}}Vault Doc{{/VAULT}} |
+|---|-------|------|{{#VAULT}}---------{{/VAULT}}|
+| 1 | _your first layer_ | _e.g., Vite Plugin_ | {{#VAULT}}_Layer Name.md_{{/VAULT}} |
 
 ### Architecture Rules
 
@@ -53,8 +57,8 @@ Never run test runners or other tools directly (e.g. `npx vitest`, `npx playwrig
 
 ## Testing
 
-- **Vitest**: unit tests for all pure TS functions; performance benchmarks; bundle size assertions
-- **Playwright**: E2E interaction tests via the `smoke-test/` workspace
+{{#VITEST}}- **Vitest**: unit tests for all pure TS functions; performance benchmarks; bundle size assertions{{/VITEST}}
+{{#SMOKETEST}}- **Playwright**: E2E interaction tests via the `smoke-test/` workspace{{/SMOKETEST}}
 - Test names describe behavior: `'generates v-bind syntax for string props'` not `'calls generateProp()'`
 
 ## Git
@@ -80,6 +84,6 @@ PRs scope to one layer where possible. Never `--no-verify` — fix the underlyin
 | `/commit-push-pr` | Opening a PR |
 | `/code-review` | Before every PR — checks arch compliance, TS safety |
 | `/simplify` | After implementing a logical chunk of a layer |
-| `/vault-sync` | After updating vault docs with new design decisions |
+{{#VAULT}}| `/vault-sync` | After updating vault docs with new design decisions |{{/VAULT}}
 | `/check-arch` | Before large refactors — reports layer coupling violations |
-| `/docs internal` | Scaffold a new architecture decision doc in the vault |
+{{#VAULT}}| `/docs internal` | Scaffold a new architecture decision doc in the vault |{{/VAULT}}

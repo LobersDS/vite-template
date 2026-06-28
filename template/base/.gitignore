@@ -10,7 +10,6 @@ lerna-debug.log*
 node_modules
 dist
 dist-site
-dist-ssr
 *.local
 
 # Editor directories and files
@@ -24,21 +23,25 @@ dist-ssr
 *.sln
 *.sw?
 
+{{#VAULT}}
 # Obsidian — workspace state (open files, cursor positions)
-StaticSite-Vault/.obsidian/workspace.json
+{{VAULT_NAME}}/.obsidian/workspace.json
 
 # Obsidian plugin binaries — contributors install these via the plugin browser.
-StaticSite-Vault/.obsidian/plugins/*/main.js
-StaticSite-Vault/.obsidian/plugins/*/styles.css
+{{VAULT_NAME}}/.obsidian/plugins/*/main.js
+{{VAULT_NAME}}/.obsidian/plugins/*/styles.css
 
 # Obsidian / Claude plugin data that may contain API keys or personal info
-StaticSite-Vault/.claudian/
-StaticSite-Vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
-StaticSite-Vault/.obsidian/plugins/realclaudian/data.json
+{{VAULT_NAME}}/.claudian/
+{{VAULT_NAME}}/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
+{{VAULT_NAME}}/.obsidian/plugins/realclaudian/data.json
+{{/VAULT}}
 
+{{#WIREIT}}
 # Wireit build cache
 .wireit/
+{{/WIREIT}}
 
 # Test artifacts
 test-results/
-smoke-test/test-results/
+{{#SMOKETEST}}smoke-test/test-results/{{/SMOKETEST}}
