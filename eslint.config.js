@@ -4,7 +4,7 @@ import prettier from 'eslint-config-prettier';
 
 export default [
   {
-    ignores: ['node_modules/**', 'template/**', 'Vault/**', '.claude/**'],
+    ignores: ['node_modules/**', 'template/**', 'Vault/**', '.claude/**', 'test-project/**'],
   },
   js.configs.recommended,
   {

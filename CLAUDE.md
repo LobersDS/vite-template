@@ -16,7 +16,7 @@ Everything in LobersDS is **private**:
 
 ## Reading the Vault First
 
-`Vault/Scaffolder/` is the Obsidian vault for this repo. Read before making design changes:
+`Scaffolder-Architecture/Scaffolder/` is the Obsidian vault for this repo. Read before making design changes:
 
 1. `Architecture Overview.md` — repo structure, CLI behaviour, template dependency chain
 2. `Alternatives Considered.md` — before proposing a design change
@@ -25,7 +25,13 @@ Everything in LobersDS is **private**:
 
 Never run tools directly. Always use `npm run` scripts.
 
-**Before every commit:** run `npm run lint:fix && npm run format` and stage any resulting changes.
+**Before every commit — mandatory, no exceptions:**
+
+```sh
+npm run lint:fix && npm run format
+```
+
+Stage any changes these produce before committing. CI runs `lint` and `format:check` on every push and will fail if this was skipped. Never commit with lint errors or unformatted files.
 
 | Script | What it does |
 |--------|-------------|

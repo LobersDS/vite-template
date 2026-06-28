@@ -5,16 +5,16 @@ node_modules
 .wireit/
 
 # Obsidian — workspace state
-Vault/.obsidian/workspace.json
+Scaffolder-Architecture/.obsidian/workspace.json
 
 # Obsidian plugin binaries — install via plugin browser
-Vault/.obsidian/plugins/*/main.js
-Vault/.obsidian/plugins/*/styles.css
+Scaffolder-Architecture/.obsidian/plugins/*/main.js
+Scaffolder-Architecture/.obsidian/plugins/*/styles.css
 
 # Obsidian / Claude plugin data that may contain API keys or personal info
-Vault/.claudian/
-Vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
-Vault/.obsidian/plugins/realclaudian/data.json
+Scaffolder-Architecture/.claudian/
+Scaffolder-Architecture/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
+Scaffolder-Architecture/.obsidian/plugins/realclaudian/data.json
 
 # Test artifacts from scaffold-and-build CI job
 test-project/

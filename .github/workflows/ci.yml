@@ -39,7 +39,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - name: Scaffold test project
-        run: printf "test-project\nn\n" | node bin/create.mjs
+        run: printf "test-project\ny\ny\ny\ny\ny\nn\ny\nn\nn\n" | node bin/create.mjs
       - name: Install dependencies
         run: npm install
         working-directory: test-project

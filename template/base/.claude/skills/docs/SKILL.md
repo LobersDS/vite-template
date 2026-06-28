@@ -17,7 +17,7 @@ If the user doesn't specify a mode, ask which they want.
 
 ## Mode: `internal` — Vault Architecture Doc
 
-Scaffold a new doc in `StaticSite-Vault/Static Site Generator/`. Check that a doc for this topic doesn't already exist before creating one.
+Scaffold a new doc in `{{VAULT_NAME}}/Static Site Generator/`. Check that a doc for this topic doesn't already exist before creating one.
 
 Ask the user for the topic and decision summary before writing.
 

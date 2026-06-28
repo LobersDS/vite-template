@@ -5,13 +5,7 @@ import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   {
-    ignores: [
-      '**/node_modules/**',
-      '**/dist/**',
-      'StaticSite-Vault/**',
-      '.remember/**',
-      '.claude/**',
-    ],
+    ignores: ['**/node_modules/**', '**/dist/**',{{#VAULT}} '{{VAULT_NAME}}/**',{{/VAULT}} '.remember/**', '.claude/**'],
   },
   js.configs.recommended,
   {

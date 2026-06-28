@@ -2,6 +2,6 @@ node_modules
 dist
 dist-site
 CHANGELOG.md
-StaticSite-Vault
+{{#VAULT}}{{VAULT_NAME}}{{/VAULT}}
 .claude
 CLAUDE.md
