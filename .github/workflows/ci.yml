@@ -7,13 +7,26 @@ on:
     branches: [main]
 
 jobs:
+  lint:
+    name: Lint and format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google/wireit@9d7c2e5346f8ef1b1ab6014c4e96c74e234f7ed5 # setup-github-actions-caching/v2
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+
   validate-template:
     name: Validate template structure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: google/wireit@9d7c2e5346f8ef1b1ab6014c4e96c74e234f7ed5 # setup-github-actions-caching/v2
       - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
-      - run: node bin/create.mjs --self-test
+      - run: npm ci
+      - run: npm test
 
   scaffold-and-build:
     name: Scaffold a project and build it
@@ -24,6 +37,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
       - name: Scaffold test project
         run: printf "test-project\nn\n" | node bin/create.mjs
       - name: Install dependencies

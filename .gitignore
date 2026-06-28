@@ -1,2 +1,20 @@
 node_modules
 .DS_Store
+
+# Wireit build cache
+.wireit/
+
+# Obsidian — workspace state
+Vault/.obsidian/workspace.json
+
+# Obsidian plugin binaries — install via plugin browser
+Vault/.obsidian/plugins/*/main.js
+Vault/.obsidian/plugins/*/styles.css
+
+# Obsidian / Claude plugin data that may contain API keys or personal info
+Vault/.claudian/
+Vault/.obsidian/plugins/obsidian-excalidraw-plugin/data.json
+Vault/.obsidian/plugins/realclaudian/data.json
+
+# Test artifacts from scaffold-and-build CI job
+test-project/

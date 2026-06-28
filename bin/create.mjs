@@ -91,9 +91,7 @@ async function prompt(message, lineQueue, rl) {
 
 async function main() {
   const lineQueue = await readStdinLines();
-  const rl = lineQueue
-    ? null
-    : createInterface({ input: process.stdin, output: process.stdout });
+  const rl = lineQueue ? null : createInterface({ input: process.stdin, output: process.stdout });
 
   try {
     let projectName = process.argv[2];
