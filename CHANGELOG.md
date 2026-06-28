@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/LobersDS/vite-template/compare/v1.1.0...v1.2.0) (2026-06-28)
+
+
+### Features
+
+* **cli,template:** add Button component, fix build errors, library mode ([2d00663](https://github.com/LobersDS/vite-template/commit/2d006631dc07688489b83a698cd61a195d6af2db))
+
 # [1.1.0](https://github.com/LobersDS/vite-template/compare/v1.0.0...v1.1.0) (2026-06-28)
 
 
