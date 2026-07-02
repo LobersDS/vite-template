@@ -21,6 +21,8 @@ Everything in LobersDS is **private**:
 1. `Architecture Overview.md` — repo structure, CLI behaviour, template dependency chain
 2. `Alternatives Considered.md` — before proposing a design change
 
+For the org-wide picture (why the LobersDS ecosystem is split across `vite-plugin-vue-template-lang-markdown`, `lober-ui`, `lober-docs-tools`, and this repo), see the `lober-ds-architecture-docs` repo → `Architecture Overview.md`.
+
 ## Commands
 
 Never run tools directly. Always use `npm run` scripts.
